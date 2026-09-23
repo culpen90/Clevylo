@@ -343,6 +343,10 @@ struct AIStreamParser {
     private var terminalReason: String?
     private(set) var finished = false
 
+    init(kind: ProviderKind) {
+        self.kind = kind
+    }
+
     mutating func consume(_ byte: UInt8) throws -> [String] {
         guard !finished else { return [] }
         totalBytes += 1
