@@ -69,6 +69,14 @@ All work used isolated synthetic libraries in `build/ManualSmoke` and `build/Sou
 
 The custom citation fixture initially triggered macOS Documents-folder access before its window loaded. It was exercised by launching the development executable from the already-authorized workspace shell; no global permissions were changed. Normal default-library launch and app-owned test-library restarts were checked independently. Drag-and-drop support is implemented through the same importer, but this pass used the native picker rather than an actual Finder drag.
 
+## Tutor layout regression - completed
+
+On 2026-09-23, the installed app reproduced the reported Tutor layout failure: the welcome heading was clipped and the sidebar, header controls, and composer were offscreen. Tutor now sizes its transcript and panel to the actual available pane, including the compact document workspace.
+
+`./scripts/test.sh --ui` passed **2 tests with 0 failures**, including the existing study/restart workflow and the new Tutor regression. The Tutor test checks that navigation and composer controls have nonzero frames inside the window, verifies typing and the missing-model error, and navigates away and back. Result bundle: `build/Logs/Test/Test-Clevylo-2026.09.23_16-33-00--0400.xcresult`.
+
+`./scripts/build.sh` also passed and produced the universal Release app and ZIP. Manual checks in an isolated synthetic library verified the sidebar and composer in a roughly 908 × 632-point window and a zoomed window, a long saved response with a horizontally scrolling code block, and an attached source in the compact document tutor. No provider inference was used for these layout checks. The unit suite was not rerun for this view-only change.
+
 ## External verification still required
 
 - Real Ollama generation, vision input, structured study generation, and cancellation require a running daemon and an installed compatible local model.
