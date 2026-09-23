@@ -1,0 +1,32 @@
+LINEAR EQUATIONS AND CHECKING A SOLUTION
+Original synthetic study material for Clevylo. No personal data.
+
+Key idea
+An equation states that two expressions have the same value. Applying the same reversible operation to both sides preserves the solution set. Keep each line balanced and check the final value in the original equation.
+
+Worked example
+Solve 3x + 5 = 20.
+Subtract 5 from both sides: 3x = 15.
+Divide both sides by 3: x = 5.
+Check: 3(5) + 5 = 20.
+
+Distributing correctly
+2(x + 4) = 2x + 8 because the factor 2 multiplies every term inside the parentheses.
+The expression 2x + 4 is not generally equal to 2(x + 4).
+
+Practice
+1. Solve 4x - 7 = 13.
+2. Solve 2(x + 4) = 18.
+3. A notebook costs $3. Four notebooks plus one pen cost $14. Find the pen's price.
+4. A line has equation y = 2x + 1. Find y when x = -2 and when x = 3.
+5. Check this claim: x = 4 solves 5x - 6 = 9.
+
+Answers and explanations
+1. Add 7 to get 4x = 20, then divide by 4: x = 5.
+2. Divide by 2 to get x + 4 = 9, then subtract 4: x = 5.
+3. Let p be the pen's price in dollars. 4(3) + p = 14, so p = 2. The pen costs $2.
+4. At x = -2, y = -3. At x = 3, y = 7.
+5. Substitution gives 5(4) - 6 = 14, not 9. The claim is false. Solving 5x = 15 gives x = 3.
+
+Suggested study routine
+Try a question without looking at its answer. Explain each operation aloud. Check the result by substitution. If an answer is wrong, identify the first line where the equality stopped being true.

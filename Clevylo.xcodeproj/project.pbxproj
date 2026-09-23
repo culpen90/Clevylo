@@ -1,0 +1,652 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		01232F6E7FD7CCD401A3669F /* DocumentImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E772F9017397986A0482FB12 /* DocumentImporter.swift */; };
+		1174820C46B66C32961168AB /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C0749312E63968EC26552F /* KeychainStore.swift */; };
+		2267F4327CA859684B21076A /* AIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9E95EDC8ADF5484771236D /* AIProvider.swift */; };
+		3F2B3EFF512CCD105ADC242B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88E4E47BF28239AA9B34B883 /* Assets.xcassets */; };
+		5101616D376C496E233D57DA /* ProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F19817F18731603381535C /* ProviderTests.swift */; };
+		534C0052EFF59B9987ADCC71 /* MaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E09931E5CC4541BDC04580 /* MaterialView.swift */; };
+		5F97081AD10C74F2DFD90835 /* SubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CFBDEED7635718D921C5F2 /* SubjectView.swift */; };
+		79A41D2F06D0549A8E9DEEDB /* ProviderSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A60594BD93F16C92A41767 /* ProviderSettingsView.swift */; };
+		87D767D8E82B76684350FD95 /* SourceIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4C5BE3DB6DF4DA22D23707 /* SourceIndex.swift */; };
+		8ACD025EADDACCE81EE3EB49 /* ClevyloUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CEBC093698F55C848A5DD3 /* ClevyloUITests.swift */; };
+		8D318B51E88E918FA2BA6965 /* StudyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A657DC1C598AF4583FE1438F /* StudyTests.swift */; };
+		8F73B4419BAA935CAC161387 /* IngestionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA181FB4C34D0CAA3F81D59 /* IngestionTests.swift */; };
+		A14C2460E7257AE7FA484E05 /* PersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0A407318FEF05FF241C9D5 /* PersistenceTests.swift */; };
+		AD5E3A22FBAE9B614AEFA23A /* ClevyloApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047FD13C6A9319320AD6392 /* ClevyloApp.swift */; };
+		B00664930DC3E51898B9B35A /* PrivacyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96CD4C5194A921525AE8B60 /* PrivacyTests.swift */; };
+		BD0520EBE0E70741A377BC9A /* TutorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DFABF55A14E6963A0206A7 /* TutorView.swift */; };
+		BD2B38CE1C28DF282B41D660 /* StudyEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664185891ED0FCEEBBBF63CA /* StudyEngine.swift */; };
+		D001726C0FE4CC09642CC581 /* StudyViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E124E86925CDE4B2EB0372E2 /* StudyViews.swift */; };
+		D8B8A1AD233F1269D9ED4649 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F07EF5F1B4DC4AA37C01C /* ContentView.swift */; };
+		DA6D1FBF97B2A9BBE2A3BB50 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A25073B71DB83F83EAD186 /* Models.swift */; };
+		EB462528FC77429829FEC952 /* LibraryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59680E31D9B5C85EC8C91F8F /* LibraryStore.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		23F89F01B2C5929A1245758B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 801E8F97330B646EA090EA95 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7B983B7396A3933E0FAC2C71;
+			remoteInfo = Clevylo;
+		};
+		4B8BFD95066021FACD93DC21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 801E8F97330B646EA090EA95 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7B983B7396A3933E0FAC2C71;
+			remoteInfo = Clevylo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		05A25073B71DB83F83EAD186 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		0F0A407318FEF05FF241C9D5 /* PersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceTests.swift; sourceTree = "<group>"; };
+		11A60594BD93F16C92A41767 /* ProviderSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderSettingsView.swift; sourceTree = "<group>"; };
+		1591FC20E99A8A247D998193 /* Clevylo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clevylo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		16DFABF55A14E6963A0206A7 /* TutorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorView.swift; sourceTree = "<group>"; };
+		29F19817F18731603381535C /* ProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderTests.swift; sourceTree = "<group>"; };
+		42E09931E5CC4541BDC04580 /* MaterialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
+		59680E31D9B5C85EC8C91F8F /* LibraryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryStore.swift; sourceTree = "<group>"; };
+		664185891ED0FCEEBBBF63CA /* StudyEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyEngine.swift; sourceTree = "<group>"; };
+		69CEBC093698F55C848A5DD3 /* ClevyloUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClevyloUITests.swift; sourceTree = "<group>"; };
+		716BBCCED7F06B569830962E /* ClevyloUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClevyloUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		88E4E47BF28239AA9B34B883 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8D4C5BE3DB6DF4DA22D23707 /* SourceIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceIndex.swift; sourceTree = "<group>"; };
+		9047FD13C6A9319320AD6392 /* ClevyloApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClevyloApp.swift; sourceTree = "<group>"; };
+		91320242FA46C41B87EF46A2 /* ClevyloTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClevyloTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		944F07EF5F1B4DC4AA37C01C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A165664633F01B8098073F51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A657DC1C598AF4583FE1438F /* StudyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyTests.swift; sourceTree = "<group>"; };
+		B3CFBDEED7635718D921C5F2 /* SubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectView.swift; sourceTree = "<group>"; };
+		C96CD4C5194A921525AE8B60 /* PrivacyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyTests.swift; sourceTree = "<group>"; };
+		CCA181FB4C34D0CAA3F81D59 /* IngestionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngestionTests.swift; sourceTree = "<group>"; };
+		E0C0749312E63968EC26552F /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
+		E124E86925CDE4B2EB0372E2 /* StudyViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyViews.swift; sourceTree = "<group>"; };
+		E772F9017397986A0482FB12 /* DocumentImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentImporter.swift; sourceTree = "<group>"; };
+		EB9E95EDC8ADF5484771236D /* AIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIProvider.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		19C075CD0B79A38AA674175D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1591FC20E99A8A247D998193 /* Clevylo.app */,
+				91320242FA46C41B87EF46A2 /* ClevyloTests.xctest */,
+				716BBCCED7F06B569830962E /* ClevyloUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		325D6174518E38FDBB669A4F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				944F07EF5F1B4DC4AA37C01C /* ContentView.swift */,
+				42E09931E5CC4541BDC04580 /* MaterialView.swift */,
+				11A60594BD93F16C92A41767 /* ProviderSettingsView.swift */,
+				E124E86925CDE4B2EB0372E2 /* StudyViews.swift */,
+				B3CFBDEED7635718D921C5F2 /* SubjectView.swift */,
+				16DFABF55A14E6963A0206A7 /* TutorView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		35A0FAD7B05954D43ACB7275 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				59680E31D9B5C85EC8C91F8F /* LibraryStore.swift */,
+				05A25073B71DB83F83EAD186 /* Models.swift */,
+				664185891ED0FCEEBBBF63CA /* StudyEngine.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		77679237442E762967C3C7F2 /* ClevyloTests */ = {
+			isa = PBXGroup;
+			children = (
+				CCA181FB4C34D0CAA3F81D59 /* IngestionTests.swift */,
+				0F0A407318FEF05FF241C9D5 /* PersistenceTests.swift */,
+				C96CD4C5194A921525AE8B60 /* PrivacyTests.swift */,
+				29F19817F18731603381535C /* ProviderTests.swift */,
+				A657DC1C598AF4583FE1438F /* StudyTests.swift */,
+			);
+			path = ClevyloTests;
+			sourceTree = "<group>";
+		};
+		7A6E9BCC9F80965AC50E1128 /* ClevyloUITests */ = {
+			isa = PBXGroup;
+			children = (
+				69CEBC093698F55C848A5DD3 /* ClevyloUITests.swift */,
+			);
+			path = ClevyloUITests;
+			sourceTree = "<group>";
+		};
+		97C6E7687871233A568DF85D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				EB9E95EDC8ADF5484771236D /* AIProvider.swift */,
+				E772F9017397986A0482FB12 /* DocumentImporter.swift */,
+				E0C0749312E63968EC26552F /* KeychainStore.swift */,
+				8D4C5BE3DB6DF4DA22D23707 /* SourceIndex.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		AE39006A6FED9F331C3A81E7 /* Clevylo */ = {
+			isa = PBXGroup;
+			children = (
+				88E4E47BF28239AA9B34B883 /* Assets.xcassets */,
+				9047FD13C6A9319320AD6392 /* ClevyloApp.swift */,
+				A165664633F01B8098073F51 /* Info.plist */,
+				35A0FAD7B05954D43ACB7275 /* Core */,
+				97C6E7687871233A568DF85D /* Services */,
+				325D6174518E38FDBB669A4F /* Views */,
+			);
+			path = Clevylo;
+			sourceTree = "<group>";
+		};
+		D6C8F374A63A91896328B302 = {
+			isa = PBXGroup;
+			children = (
+				AE39006A6FED9F331C3A81E7 /* Clevylo */,
+				77679237442E762967C3C7F2 /* ClevyloTests */,
+				7A6E9BCC9F80965AC50E1128 /* ClevyloUITests */,
+				19C075CD0B79A38AA674175D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3862C3241C6E1E960E0826D1 /* ClevyloTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B873B8C97671FF04FE6A3CF9 /* Build configuration list for PBXNativeTarget "ClevyloTests" */;
+			buildPhases = (
+				FD261D72F73CAA908E1291A2 /* Sources */,
+				CCEAD7C3C86A93F7E94A63BB /* Prepare generated tests for local signing */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9C5CB9F919F3F22625DAC7C4 /* PBXTargetDependency */,
+			);
+			name = ClevyloTests;
+			packageProductDependencies = (
+			);
+			productName = ClevyloTests;
+			productReference = 91320242FA46C41B87EF46A2 /* ClevyloTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7B983B7396A3933E0FAC2C71 /* Clevylo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A4B045A6715ECC339428639A /* Build configuration list for PBXNativeTarget "Clevylo" */;
+			buildPhases = (
+				A02D6F97A7A3A1DD6614486E /* Sources */,
+				C02DAEE02F24D91F17ED0A21 /* Resources */,
+				4331CAA6D7325328F4199769 /* Prepare generated bundle for local signing */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Clevylo;
+			packageProductDependencies = (
+			);
+			productName = Clevylo;
+			productReference = 1591FC20E99A8A247D998193 /* Clevylo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FE4F1217425D0D3A1A393C6F /* ClevyloUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D1E2A044878778B2FFD5D5F /* Build configuration list for PBXNativeTarget "ClevyloUITests" */;
+			buildPhases = (
+				34E085403641EB74F14F172F /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5234E6E7CDFC719A9FE39DF9 /* PBXTargetDependency */,
+			);
+			name = ClevyloUITests;
+			packageProductDependencies = (
+			);
+			productName = ClevyloUITests;
+			productReference = 716BBCCED7F06B569830962E /* ClevyloUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		801E8F97330B646EA090EA95 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					3862C3241C6E1E960E0826D1 = {
+						ProvisioningStyle = Manual;
+					};
+					7B983B7396A3933E0FAC2C71 = {
+						ProvisioningStyle = Manual;
+					};
+					FE4F1217425D0D3A1A393C6F = {
+						ProvisioningStyle = Manual;
+						TestTargetID = 7B983B7396A3933E0FAC2C71;
+					};
+				};
+			};
+			buildConfigurationList = F6920F1DDE6ABE7D92EE3BB8 /* Build configuration list for PBXProject "Clevylo" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = D6C8F374A63A91896328B302;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 19C075CD0B79A38AA674175D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7B983B7396A3933E0FAC2C71 /* Clevylo */,
+				3862C3241C6E1E960E0826D1 /* ClevyloTests */,
+				FE4F1217425D0D3A1A393C6F /* ClevyloUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C02DAEE02F24D91F17ED0A21 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F2B3EFF512CCD105ADC242B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4331CAA6D7325328F4199769 /* Prepare generated bundle for local signing */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Prepare generated bundle for local signing";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xattr -cr \"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"";
+		};
+		CCEAD7C3C86A93F7E94A63BB /* Prepare generated tests for local signing */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Prepare generated tests for local signing";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xattr -cr \"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		34E085403641EB74F14F172F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8ACD025EADDACCE81EE3EB49 /* ClevyloUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A02D6F97A7A3A1DD6614486E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2267F4327CA859684B21076A /* AIProvider.swift in Sources */,
+				AD5E3A22FBAE9B614AEFA23A /* ClevyloApp.swift in Sources */,
+				D8B8A1AD233F1269D9ED4649 /* ContentView.swift in Sources */,
+				01232F6E7FD7CCD401A3669F /* DocumentImporter.swift in Sources */,
+				1174820C46B66C32961168AB /* KeychainStore.swift in Sources */,
+				EB462528FC77429829FEC952 /* LibraryStore.swift in Sources */,
+				534C0052EFF59B9987ADCC71 /* MaterialView.swift in Sources */,
+				DA6D1FBF97B2A9BBE2A3BB50 /* Models.swift in Sources */,
+				79A41D2F06D0549A8E9DEEDB /* ProviderSettingsView.swift in Sources */,
+				87D767D8E82B76684350FD95 /* SourceIndex.swift in Sources */,
+				BD2B38CE1C28DF282B41D660 /* StudyEngine.swift in Sources */,
+				D001726C0FE4CC09642CC581 /* StudyViews.swift in Sources */,
+				5F97081AD10C74F2DFD90835 /* SubjectView.swift in Sources */,
+				BD0520EBE0E70741A377BC9A /* TutorView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD261D72F73CAA908E1291A2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F73B4419BAA935CAC161387 /* IngestionTests.swift in Sources */,
+				A14C2460E7257AE7FA484E05 /* PersistenceTests.swift in Sources */,
+				B00664930DC3E51898B9B35A /* PrivacyTests.swift in Sources */,
+				5101616D376C496E233D57DA /* ProviderTests.swift in Sources */,
+				8D318B51E88E918FA2BA6965 /* StudyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5234E6E7CDFC719A9FE39DF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7B983B7396A3933E0FAC2C71 /* Clevylo */;
+			targetProxy = 4B8BFD95066021FACD93DC21 /* PBXContainerItemProxy */;
+		};
+		9C5CB9F919F3F22625DAC7C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7B983B7396A3933E0FAC2C71 /* Clevylo */;
+			targetProxy = 23F89F01B2C5929A1245758B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		056B2CCBAF27FCFE63BF4210 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Clevylo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Clevylo;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Clevylo";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.clevylo.app;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		399269D107BEA84E014DFE5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.clevylo.ClevyloTests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Clevylo.app/Contents/MacOS/Clevylo";
+			};
+			name = Debug;
+		};
+		52754B09F200E99599687D04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Clevylo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Clevylo;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Clevylo";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.clevylo.app;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		5F05376623E6655B9AA9F702 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.clevylo.ClevyloUITests;
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = Clevylo;
+			};
+			name = Release;
+		};
+		7F6CDFE807D72A471ADD8632 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		9F2A14A1F83DE4A05D2A87F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.clevylo.ClevyloTests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Clevylo.app/Contents/MacOS/Clevylo";
+			};
+			name = Release;
+		};
+		E7A912E41598CA2805742C2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.clevylo.ClevyloUITests;
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = Clevylo;
+			};
+			name = Debug;
+		};
+		F728B19FDDB2A66A780A44AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D1E2A044878778B2FFD5D5F /* Build configuration list for PBXNativeTarget "ClevyloUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7A912E41598CA2805742C2B /* Debug */,
+				5F05376623E6655B9AA9F702 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A4B045A6715ECC339428639A /* Build configuration list for PBXNativeTarget "Clevylo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52754B09F200E99599687D04 /* Debug */,
+				056B2CCBAF27FCFE63BF4210 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B873B8C97671FF04FE6A3CF9 /* Build configuration list for PBXNativeTarget "ClevyloTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				399269D107BEA84E014DFE5E /* Debug */,
+				9F2A14A1F83DE4A05D2A87F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F6920F1DDE6ABE7D92EE3BB8 /* Build configuration list for PBXProject "Clevylo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F6CDFE807D72A471ADD8632 /* Debug */,
+				F728B19FDDB2A66A780A44AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 801E8F97330B646EA090EA95 /* Project object */;
+}

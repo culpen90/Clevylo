@@ -1,0 +1,59 @@
+name: Clevylo
+options:
+  bundleIdPrefix: com.clevylo
+  deploymentTarget:
+    macOS: '14.0'
+settings:
+  base:
+    SWIFT_VERSION: '5.0'
+    GENERATE_INFOPLIST_FILE: YES
+    MACOSX_DEPLOYMENT_TARGET: '14.0'
+    CODE_SIGN_IDENTITY: '-'
+    CODE_SIGN_STYLE: Manual
+    ENABLE_HARDENED_RUNTIME: YES
+targets:
+  Clevylo:
+    type: application
+    platform: macOS
+    sources: [Clevylo]
+    postBuildScripts:
+      - name: Prepare generated bundle for local signing
+        script: 'xattr -cr "${TARGET_BUILD_DIR}/${WRAPPER_NAME}"'
+        basedOnDependencyAnalysis: false
+        runOnlyWhenInstalling: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.clevylo.app
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_FILE: Clevylo/Info.plist
+        INFOPLIST_KEY_CFBundleDisplayName: Clevylo
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.education
+        INFOPLIST_KEY_NSHumanReadableCopyright: 'Copyright © 2026 Clevylo'
+        MARKETING_VERSION: '1.0.0'
+        CURRENT_PROJECT_VERSION: '1'
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+  ClevyloTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources: [ClevyloTests]
+    postBuildScripts:
+      - name: Prepare generated tests for local signing
+        script: 'xattr -cr "${TARGET_BUILD_DIR}/${WRAPPER_NAME}"'
+        basedOnDependencyAnalysis: false
+    dependencies:
+      - target: Clevylo
+  ClevyloUITests:
+    type: bundle.ui-testing
+    platform: macOS
+    sources: [ClevyloUITests]
+    dependencies:
+      - target: Clevylo
+schemes:
+  Clevylo:
+    build:
+      targets:
+        Clevylo: all
+    test:
+      targets: [ClevyloTests, ClevyloUITests]
+      environmentVariables:
+        CLEVYLO_DATA_DIR: $(SRCROOT)/build/TestHost
