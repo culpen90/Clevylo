@@ -6,7 +6,7 @@ Keep subjects, documents, notes, assignments, conversations, flashcards, and pra
 
 ## Download and install
 
-Download **[Clevylo 1.0.0 for macOS](https://github.com/culpen90/Clevylo/releases/download/v1.0.0/Clevylo-1.0.0-macOS-universal.zip)** or browse the [release notes and checksums](https://github.com/culpen90/Clevylo/releases/latest). Requires macOS 14 or later; the app includes Apple Silicon and Intel binaries. Xcode is not needed to run the download.
+Download **[the latest Clevylo for macOS](https://github.com/culpen90/Clevylo/releases/latest/download/Clevylo-macOS-universal.zip)** or browse the [release notes and checksums](https://github.com/culpen90/Clevylo/releases/latest). Requires macOS 14 or later; the app includes Apple Silicon and Intel binaries. Xcode is not needed to run the download.
 
 1. Expand the ZIP and move **Clevylo.app** to **Applications**.
 2. Open Clevylo. This release is **ad-hoc signed, not Developer ID signed or notarized**, so macOS may block the first launch.
@@ -84,6 +84,10 @@ Quit an existing instance first. `CLEVYLO_DATA_DIR` is also supported for automa
 **Verified on 2026-09-23:** the combined suite passed 63 unit tests and 1 native UI smoke test. The Release build and manual native interface checks also passed; live model inference still requires your setup.
 
 Tests use synthetic fixtures and isolated data directories. Provider tests use deterministic URLProtocol responses, including cancellation of real URLSession tasks. Production always calls the selected real provider. UI tests require macOS permission to automate the interface; results and screenshots are saved under `build/Logs/Test/`. See [verification evidence](docs/VERIFICATION.md) for actual results and remaining environment checks.
+
+### Automatic releases
+
+GitHub Actions tests every pull request and push to `main`. After passing checks, changes on `main` automatically receive a version, Git tag, release notes, universal macOS ZIP, and SHA-256 checksums. Use Conventional Commit messages (or the PR title when squash merging): `fix:` / `perf:` for patches, `feat:` for minor releases, and `!` or a `BREAKING CHANGE:` footer for major releases. Documentation and maintenance commits alone do not create releases. See [release rules, previews, and recovery](docs/RELEASING.md).
 
 ### Review scheduling
 

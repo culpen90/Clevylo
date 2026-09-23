@@ -1,0 +1,23 @@
+{
+  "branches": ["main"],
+  "tagFormat": "v${version}",
+  "plugins": [
+    ["@semantic-release/commit-analyzer", { "preset": "conventionalcommits" }],
+    ["@semantic-release/release-notes-generator", { "preset": "conventionalcommits" }],
+    ["@semantic-release/exec", {
+      "prepareCmd": "./scripts/package-release.sh ${nextRelease.version} \"$(git rev-list --count HEAD)\""
+    }],
+    ["@semantic-release/github", {
+      "assets": [
+        { "path": "build/release/Clevylo-[0-9]*-macOS-universal.zip", "label": "Clevylo ${nextRelease.version} for macOS (Apple Silicon and Intel)" },
+        { "path": "build/release/Clevylo-macOS-universal.zip", "label": "Clevylo for macOS (stable download link)" },
+        { "path": "build/release/SHA256SUMS", "label": "SHA-256 checksums" }
+      ],
+      "successCommentCondition": false,
+      "failCommentCondition": false,
+      "releasedLabels": false,
+      "releaseNameTemplate": "Clevylo ${nextRelease.version}",
+      "releaseBodyTemplate": "${nextRelease.notes}\n\n## Download and install\n\nDownload `Clevylo-${nextRelease.version}-macOS-universal.zip`, expand it, and move **Clevylo.app** to **Applications**. Requires macOS 14 or later; includes Apple Silicon and Intel binaries. `Clevylo-macOS-universal.zip` is an identical copy for the stable download link. `SHA256SUMS` covers both archives.\n\nThis app is **ad-hoc signed, not Developer ID signed or notarized**. If macOS blocks the first launch, follow [Apple's instructions](https://support.apple.com/en-us/102445) for allowing this specific app. Updates are installed manually; quit Clevylo before replacing it. Your library is stored separately from the app.\n\n## Verification\n\nRelease policy tests and macOS unit tests passed before publication. Packaging verified the extracted app's signature, version, minimum OS, both binary architectures, and absence of debug entitlements and test bundles. Intel execution, macOS 14 execution, GUI smoke testing, and live model inference remain separate manual checks. See [release documentation](https://github.com/culpen90/Clevylo/blob/v${nextRelease.version}/docs/RELEASING.md)."
+    }]
+  ]
+}

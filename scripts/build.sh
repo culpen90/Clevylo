@@ -4,10 +4,33 @@ workspace_dir="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$workspace_dir"
 build_action=build
 build_configuration=Release
-if [[ "${1:-}" == "--for-testing" ]]; then build_action=build-for-testing; build_configuration=Debug; fi
+case "${1:-}" in
+  --for-testing) build_action=build-for-testing; build_configuration=Debug ;;
+  '') ;;
+  *) printf 'Usage: %s [--for-testing]\n' "$0" >&2; exit 2 ;;
+esac
+if [[ "$#" -gt 1 ]]; then printf 'Usage: %s [--for-testing]\n' "$0" >&2; exit 2; fi
+
+# Release automation supplies the version at build time, before signing. These
+# overrides keep the checked-in project and its XcodeGen source in sync.
+build_settings=(CODE_SIGNING_ALLOWED=NO)
+if [[ -n "${CLEVYLO_VERSION:-}" || -n "${CLEVYLO_BUILD_NUMBER:-}" ]]; then
+  if [[ ! "${CLEVYLO_VERSION:-}" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+    printf 'CLEVYLO_VERSION must be a stable semantic version, such as 1.2.3.\n' >&2
+    exit 2
+  fi
+  if [[ ! "${CLEVYLO_BUILD_NUMBER:-}" =~ ^[1-9][0-9]*$ ]]; then
+    printf 'CLEVYLO_BUILD_NUMBER must be a positive integer.\n' >&2
+    exit 2
+  fi
+  build_settings+=("MARKETING_VERSION=$CLEVYLO_VERSION" "CURRENT_PROJECT_VERSION=$CLEVYLO_BUILD_NUMBER")
+fi
+if [[ "$build_configuration" == Release ]]; then
+  build_settings+=("ARCHS=arm64 x86_64" ONLY_ACTIVE_ARCH=NO)
+fi
 xcodebuild -project Clevylo.xcodeproj -scheme Clevylo -configuration "$build_configuration" \
   -destination 'platform=macOS' -derivedDataPath "$workspace_dir/build" \
-  CODE_SIGNING_ALLOWED=NO "$build_action"
+  "${build_settings[@]}" "$build_action"
 # File-provider-managed workspaces can reattach Finder metadata during the build.
 # Clear only generated bundles immediately before each local ad-hoc signature.
 while IFS= read -r -d '' bundle_path; do
