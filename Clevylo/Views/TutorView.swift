@@ -44,6 +44,7 @@ struct TutorPanel: View {
     private var history: [Conversation] { store.library.conversations.filter { $0.subjectID == subjectID }.sorted { $0.updatedAt > $1.updatedAt } }
 
     var body: some View {
+        GeometryReader { viewport in
         VStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 12) {
                 HStack {
@@ -55,7 +56,7 @@ struct TutorPanel: View {
                 Picker("Subject", selection: $subjectID) {
                     Text("General questions").tag(Optional<UUID>.none)
                     ForEach(store.library.subjects) { Text($0.name).tag(Optional($0.id)) }
-                }.disabled(busy || compact).onChange(of: subjectID) { old, new in
+                }.accessibilityIdentifier("tutorSubject").disabled(busy || compact).onChange(of: subjectID) { old, new in
                     if old != new { conversationID = nil; materialIDs = []; noteIDs = []; assignmentIDs = []; requestError = nil }
                 }
                 HStack {
@@ -70,7 +71,7 @@ struct TutorPanel: View {
                             ForEach(store.library.notes.filter { noteIDs.contains($0.id) }) { note in sourceChip(note.title) { noteIDs.remove(note.id) } }
                             ForEach(store.library.assignments.filter { assignmentIDs.contains($0.id) }) { assignment in sourceChip(assignment.title) { assignmentIDs.remove(assignment.id) } }
                         }
-                    }
+                    }.fixedSize(horizontal: false, vertical: true)
                 } else { Text("No sources attached · general explanation").font(.caption).foregroundStyle(.secondary) }
             }.padding(compact ? 16 : 24)
             Divider()
@@ -80,7 +81,7 @@ struct TutorPanel: View {
                         if conversation?.messages.isEmpty != false {
                             VStack(alignment: .leading, spacing: 14) {
                                 Image(systemName: "lightbulb").font(.largeTitle).foregroundStyle(.indigo)
-                                Text("Let’s make it click.").font(.title2.weight(.medium))
+                                Text("Let’s make it click.").font(.title2.weight(.medium)).accessibilityIdentifier("tutorWelcome")
                                 Text("Ask about a confusing idea, paste a problem and your attempt, or choose materials to explore together.").foregroundStyle(.secondary)
                                 if store.settings.model.isEmpty { Text("Choose a model in Settings to start. Your local workspace is ready to use now.").font(.callout); SettingsLink { Text("Set Up AI Provider…") } }
                             }.padding(.vertical, 20)
@@ -99,9 +100,11 @@ struct TutorPanel: View {
                             }.textSelection(.enabled).id(message.id)
                         }
                         Color.clear.frame(height: 1).id("bottom")
-                    }.padding(compact ? 16 : 28).frame(maxWidth: 850).frame(maxWidth: .infinity, alignment: .leading)
+                    }.padding(compact ? 16 : 28)
+                        .frame(width: min(850, max(0, viewport.size.width)), alignment: .leading)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }.onChange(of: conversation?.messages.last?.text) { _, _ in proxy.scrollTo("bottom", anchor: .bottom) }
-            }
+            }.frame(minHeight: 0, maxHeight: .infinity)
             if let error = requestError {
                 HStack(alignment: .top) { Image(systemName: "exclamationmark.triangle").foregroundStyle(.orange); Text(error).font(.callout).textSelection(.enabled); Spacer(); if retryAllowed { Button("Retry") { send(retrying: true) }.disabled(busy) } }.padding(12).background(.quaternary)
             }
@@ -124,6 +127,11 @@ struct TutorPanel: View {
                 }
             }.padding(compact ? 14 : 20)
         }
+        // Keep the transcript inside the actual pane. Its ideal size must not
+        // expand the native split view and push the sidebar and composer offscreen.
+        .frame(width: viewport.size.width, height: viewport.size.height)
+        }
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         .sheet(isPresented: $sourcePicker) { SourcePicker(subjectID: subjectID, materialIDs: $materialIDs, noteIDs: $noteIDs, assignmentIDs: $assignmentIDs) }
         .sheet(item: $sourceDetail) { source in SourceDetailView(source: source) }
         .sheet(item: $responseToSave) { message in SaveTutorNoteSheet(text: displayText(message), suggestedTitle: conversation?.title ?? "Tutor note", suggestedSubject: subjectID) }

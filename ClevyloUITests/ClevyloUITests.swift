@@ -21,6 +21,36 @@ final class ClevyloUITests: XCTestCase {
         if app != nil { app.terminate() }
     }
 
+    func testTutorKeepsNavigationAndComposerInsideWindow() {
+        app.typeKey("4", modifierFlags: .command)
+        assertTutorControlsInsideWindow()
+
+        let prompt = editable("tutorPrompt")
+        let send = app.buttons["sendTutor"]
+        XCTAssertFalse(send.isEnabled)
+        replaceText(in: prompt, with: "Help me understand fractions.")
+        let canSend = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: send)
+        XCTAssertEqual(XCTWaiter.wait(for: [canSend], timeout: 5), .completed)
+        send.click()
+
+        // An empty test workspace has no model configured, so this exercises the
+        // inline error layout without reading credentials or contacting a provider.
+        let error = app.staticTexts["Choose a model in Clevylo Settings → AI Provider first."]
+        assertInsideMainWindow(error)
+        assertTutorControlsInsideWindow()
+        XCTAssertEqual(prompt.value as? String, "Help me understand fractions.")
+
+        app.typeKey("1", modifierFlags: .command)
+        XCTAssertTrue(app.buttons["Create Your First Subject"].waitForExistence(timeout: 5))
+        app.typeKey("4", modifierFlags: .command)
+        assertTutorControlsInsideWindow()
+
+        let screenshot = XCTAttachment(screenshot: app.screenshot())
+        screenshot.name = "Tutor navigation, header, and composer remain visible"
+        screenshot.lifetime = .keepAlways
+        add(screenshot)
+    }
+
     func testLocalStudyWorkflowSurvivesRestartAndKeepsSubjectsSeparate() throws {
         createSubject("Biology Smoke")
         createNote(subject: "Biology Smoke", title: "Cell notes", body: "Membranes are selectively permeable. Biology-only material.")
@@ -141,6 +171,28 @@ final class ClevyloUITests: XCTestCase {
         replaceText(in: field, with: name)
         app.buttons["saveSubject"].click()
         XCTAssertTrue(app.staticTexts[name].firstMatch.waitForExistence(timeout: 5))
+    }
+
+    private func assertTutorControlsInsideWindow(file: StaticString = #filePath, line: UInt = #line) {
+        let newConversation = app.buttons["New conversation"]
+        let subject = app.descendants(matching: .any)["tutorSubject"].firstMatch
+        let welcome = app.staticTexts["tutorWelcome"]
+        let prompt = editable("tutorPrompt")
+        for element in [app.buttons["addSubject"], newConversation, subject, welcome, prompt, app.buttons["sendTutor"]] {
+            assertInsideMainWindow(element, file: file, line: line)
+        }
+        XCTAssertGreaterThanOrEqual(welcome.frame.minY, newConversation.frame.maxY, "The welcome heading must appear below the Tutor header.", file: file, line: line)
+        XCTAssertGreaterThanOrEqual(welcome.frame.minY, subject.frame.maxY, "The welcome heading must appear below the subject picker.", file: file, line: line)
+        XCTAssertLessThanOrEqual(welcome.frame.maxY, prompt.frame.minY, "The transcript must not overlap the composer.", file: file, line: line)
+    }
+
+    private func assertInsideMainWindow(_ element: XCUIElement, file: StaticString = #filePath, line: UInt = #line) {
+        XCTAssertTrue(element.waitForExistence(timeout: 5), file: file, line: line)
+        let frame = element.frame
+        let windowFrame = app.windows.firstMatch.frame
+        XCTAssertGreaterThan(frame.width, 0, "The control must have visible width.", file: file, line: line)
+        XCTAssertGreaterThan(frame.height, 0, "The control must have visible height.", file: file, line: line)
+        XCTAssertTrue(windowFrame.insetBy(dx: -1, dy: -1).contains(frame), "Control frame \(frame) must fit inside main window \(windowFrame).", file: file, line: line)
     }
 
     private func selectSubject(_ name: String) {
