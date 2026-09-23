@@ -44,6 +44,8 @@ Environment: Apple Silicon, macOS 26.6.2 (25G83), Xcode 27.0 (27A266a), macOS SD
 
 Combined result bundle: `build/Logs/Test/Test-Clevylo-2026.09.23_15-58-33--0400.xcresult`.
 
+The passing UI smoke also recorded two unresolved runtime diagnostics: a thread-priority inversion while entering a note, and SwiftUI's "Publishing changes from within view updates is not allowed" while returning to a subject. The result contains no symbolicated originating app location. Subsequent note isolation, assignment completion, review, and restart checks passed; passing tests do not establish that these diagnostics are harmless.
+
 The integrated persistence test imports into two subjects, saves notes/assignments/conversations/study history, reloads the complete library, and checks managed files and source isolation. Failure tests cover corrupt snapshots, unsafe filenames, failed save rollback, failed imports, changed/deleted references, and interrupted conversations.
 
 The end-to-end test uses a fresh unique `build/UI-smoke` library. It creates two subjects, distinct notes and assignments, completes only one assignment, edits a manual deck, records a Good review through native keyboard controls, restarts, and checks both the rendered workspace and persisted relationships, review history, interval, and next local calendar day. The result contains a retained screenshot.
@@ -72,5 +74,13 @@ The custom citation fixture initially triggered macOS Documents-folder access be
 - Real Ollama generation, vision input, structured study generation, and cancellation require a running daemon and an installed compatible local model.
 - Real OpenRouter generation, model support, billing, and cancellation require the student's own API key and applicable account access. No live inference was attempted without credentials.
 - Public distribution signing and notarization are separate from a local development build.
+
+## First GitHub release packaging
+
+On 2026-09-23, `./scripts/build.sh` rebuilt version **1.0.0 (1)** successfully. The clean ZIP was extracted outside the file-provider-managed workspace and passed strict ad-hoc signature verification. Both arm64 and x86_64 slices are present, the bundle minimum is macOS 14, and linked libraries are provided by macOS. The archive contains only the app executable, bundle metadata, icon/assets, and code signature; no test bundle, credentials, or student library is included. The app has no entitlements.
+
+The extracted app launched on the Apple Silicon development Mac with a fresh temporary library. Native subject creation worked, the rendered subject workspace was inspected, and the new subject was present in the isolated saved library. This launch check did not exercise an Intel machine or a browser-quarantined download.
+
+Gatekeeper assessment rejected the ad-hoc app as expected. It is not Developer ID signed or notarized. Release notes and [installation instructions](../README.md#download-and-install) explain the per-app first-launch exception. The checksum is published beside the ZIP so users can check download integrity.
 
 Official provider contracts and setup references are collected in [PROVIDERS.md](PROVIDERS.md): [Ollama chat](https://docs.ollama.com/api/chat), [Ollama model listing](https://docs.ollama.com/api/tags), [OpenRouter quickstart](https://openrouter.ai/docs/quickstart), [OpenRouter streaming](https://openrouter.ai/docs/api_reference/streaming), and [OpenRouter structured outputs](https://openrouter.ai/docs/guides/features/structured-outputs).

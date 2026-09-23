@@ -4,6 +4,16 @@
 
 Keep subjects, documents, notes, assignments, conversations, flashcards, and practice quizzes together. Clevylo uses **Ollama locally** or **OpenRouter in the cloud**. There is no account system, telemetry, or hosted backend.
 
+## Download and install
+
+Download **[Clevylo 1.0.0 for macOS](https://github.com/culpen90/Clevylo/releases/download/v1.0.0/Clevylo-1.0.0-macOS-universal.zip)** or browse the [release notes and checksums](https://github.com/culpen90/Clevylo/releases/latest). Requires macOS 14 or later; the app includes Apple Silicon and Intel binaries. Xcode is not needed to run the download.
+
+1. Expand the ZIP and move **Clevylo.app** to **Applications**.
+2. Open Clevylo. This release is **ad-hoc signed, not Developer ID signed or notarized**, so macOS may block the first launch.
+3. If you trust this download, follow [Apple's instructions](https://support.apple.com/en-us/102445): after attempting to open it, use **System Settings → Privacy & Security → Open Anyway**, then confirm. Managed Macs may prohibit this exception.
+
+Local organization and study work without provider setup. AI features require your own running Ollama model or OpenRouter key; neither is bundled. Releases are installed manually. See [release verification and packaging](docs/RELEASING.md).
+
 ## Build and run
 
 Requires macOS 14 or later and a stable Xcode with the macOS SDK. The checked-in Xcode project includes the shared **Clevylo** scheme. No third-party runtime packages are required.
@@ -94,5 +104,5 @@ Every rating records an actual review. Multiple-choice practice uses the saved a
 - Retrieval is local lexical passage ranking, not a semantic embedding database. It returns bounded excerpts only from selected sources.
 - Native text renders Markdown emphasis/links, code blocks, and common Unicode mathematical notation. Complex LaTeX remains readable source notation; this version does not contain a full equation-typesetting engine.
 - Image attachments to a tutor request are transient; imported material copies and conversation text persist. Reattach an image if you need it in a later request.
-- Builds are ad-hoc signed for **local development**. The release app has no debug/test entitlements; test builds have the entitlements needed by XCTest. Neither is Developer ID signed, notarized, or prepared for public distribution or the App Store.
+- Downloadable builds are **ad-hoc signed and not notarized**. Expect a macOS first-launch security prompt; see the installation instructions above. The release app has no debug/test entitlements; test builds have the entitlements needed by XCTest. No App Store distribution or automatic updater is provided.
 - Live model inference requires a running installed Ollama model or an OpenRouter key. Neither is supplied with the app.
