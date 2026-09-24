@@ -12,13 +12,48 @@ final class ClevyloUITests: XCTestCase {
         dataDirectory = workspace.appendingPathComponent("build/UI-smoke/\(UUID().uuidString)", isDirectory: true)
         try FileManager.default.createDirectory(at: dataDirectory, withIntermediateDirectories: true)
         app = XCUIApplication()
-        app.launchArguments = ["--data-dir", dataDirectory.path]
+        app.launchArguments = ["--data-dir", dataDirectory.path,
+                               "-SUEnableAutomaticChecks", "NO", "-SUHasLaunchedBefore", "YES"]
         app.launch()
         XCTAssertTrue(app.buttons["addSubject"].waitForExistence(timeout: 10))
     }
 
     override func tearDownWithError() throws {
         if app != nil { app.terminate() }
+    }
+
+    func testUpdateControlsAreAvailableWithoutStartingNetworkRequests() {
+        app.menuBars.menuBarItems["Clevylo"].click()
+        let menuItem = app.menuItems["Check for Updates…"]
+        XCTAssertTrue(menuItem.waitForExistence(timeout: 5))
+        XCTAssertTrue(menuItem.isEnabled)
+        let settingsMenuItem = app.menuItems["Settings…"]
+        XCTAssertTrue(settingsMenuItem.waitForExistence(timeout: 5))
+        settingsMenuItem.click()
+        let updatesTab = app.buttons["Updates"]
+        XCTAssertTrue(updatesTab.waitForExistence(timeout: 5))
+        updatesTab.click()
+
+        let version = app.staticTexts["installedVersion"]
+        XCTAssertTrue(version.waitForExistence(timeout: 5))
+        XCTAssertTrue((version.label + " " + (version.value as? String ?? "")).contains("Version "))
+        let automaticChecks = app.descendants(matching: .any)["automaticallyCheckForUpdates"].firstMatch
+        XCTAssertTrue(automaticChecks.waitForExistence(timeout: 5))
+        XCTAssertTrue(automaticChecks.isEnabled)
+        let automaticCheckValue = (automaticChecks.value.map { String(describing: $0) } ?? "").lowercased()
+        XCTAssertTrue(["0", "off"].contains(automaticCheckValue), "Automatic checks must be off, got \(automaticCheckValue)")
+        let check = app.buttons["checkForUpdates"]
+        XCTAssertTrue(check.waitForExistence(timeout: 5))
+        XCTAssertTrue(check.isEnabled)
+        XCTAssertFalse(app.staticTexts["updateStartupError"].exists)
+        XCTAssertTrue(app.descendants(matching: .any)["lastUpdateCheck"].firstMatch.exists)
+
+        // Opening Settings must not initiate an update check. Automatic checks are
+        // disabled above, and the manual action is deliberately not pressed here.
+        let screenshot = XCTAttachment(screenshot: app.screenshot())
+        screenshot.name = "Native update menu and Settings controls"
+        screenshot.lifetime = .keepAlways
+        add(screenshot)
     }
 
     func testTutorKeepsNavigationAndComposerInsideWindow() {

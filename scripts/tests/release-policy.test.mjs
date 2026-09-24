@@ -119,7 +119,7 @@ test('release notes include user changes, breaking migration guidance, and GitHu
   assert.doesNotMatch(notes, /internal documentation housekeeping/);
 });
 
-test('GitHub asset resolution selects both archives and checksums without unrelated files', async (context) => {
+test('GitHub asset resolution selects both archives, signed feed, and checksums without unrelated files', async (context) => {
   const fixtureRoot = await mkdtemp(join(tmpdir(), 'clevylo-release-assets-'));
   context.after(() => rm(fixtureRoot, { recursive: true, force: true }));
   const outputDirectory = join(fixtureRoot, 'build/release');
@@ -127,6 +127,7 @@ test('GitHub asset resolution selects both archives and checksums without unrela
   const expectedAssets = [
     'Clevylo-1.2.3-macOS-universal.zip',
     'Clevylo-macOS-universal.zip',
+    'appcast.xml',
     'SHA256SUMS',
   ];
   await Promise.all(
