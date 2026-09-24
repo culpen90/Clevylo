@@ -59,6 +59,7 @@ struct ProviderSettingsView: View {
                     Text("To back up your work, quit Clevylo and copy this entire folder. The API key remains separately in Keychain.").font(.caption).foregroundStyle(.secondary)
                 }
             }.formStyle(.grouped).tabItem { Label("General", systemImage: "gearshape") }
+            UpdateSettingsView().tabItem { Label("Updates", systemImage: "arrow.down.circle") }
         }.padding(12).frame(width: 610, height: 650)
             .preferredColorScheme(appearance == "light" ? .light : appearance == "dark" ? .dark : nil)
             .onAppear { do { hasKey = try KeychainStore().load() != nil } catch { status = error.localizedDescription } }

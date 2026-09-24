@@ -1,4 +1,8 @@
 name: Clevylo
+packages:
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle
+    exactVersion: 2.10.0
 options:
   bundleIdPrefix: com.clevylo
   deploymentTarget:
@@ -16,6 +20,8 @@ targets:
     type: application
     platform: macOS
     sources: [Clevylo]
+    dependencies:
+      - package: Sparkle
     postBuildScripts:
       - name: Prepare generated bundle for local signing
         script: 'xattr -cr "${TARGET_BUILD_DIR}/${WRAPPER_NAME}"'

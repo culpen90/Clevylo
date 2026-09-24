@@ -1,6 +1,11 @@
 #!/bin/bash
 set -euo pipefail
 workspace_dir="$(cd "$(dirname "$0")/.." && pwd)"
+build_dir="${CLEVYLO_BUILD_DIR:-$workspace_dir/build}"
+if [[ "$build_dir" != /* ]]; then
+  printf 'CLEVYLO_BUILD_DIR must be an absolute path.\n' >&2
+  exit 2
+fi
 cd "$workspace_dir"
 build_action=build
 build_configuration=Release
@@ -29,18 +34,22 @@ if [[ "$build_configuration" == Release ]]; then
   build_settings+=("ARCHS=arm64 x86_64" ONLY_ACTIVE_ARCH=NO)
 fi
 xcodebuild -project Clevylo.xcodeproj -scheme Clevylo -configuration "$build_configuration" \
-  -destination 'platform=macOS' -derivedDataPath "$workspace_dir/build" \
+  -destination 'platform=macOS' -derivedDataPath "$build_dir" \
   "${build_settings[@]}" "$build_action"
 # File-provider-managed workspaces can reattach Finder metadata during the build.
 # Clear only generated bundles immediately before each local ad-hoc signature.
 while IFS= read -r -d '' bundle_path; do
-  signing_options=(--force --deep --sign -)
-  if [[ "$build_configuration" == Debug ]]; then
+  # Preserve Sparkle's signed helpers. Re-sign only the outer framework because
+  # Xcode strips its headers/modules when embedding it, invalidating its seal.
+  # --deep would incorrectly give the helpers XCTest entitlements in Debug.
+  if [[ "$bundle_path" == */Sparkle.framework/* ]]; then continue; fi
+  signing_options=(--force --sign -)
+  if [[ "$build_configuration" == Debug && "$bundle_path" != *.framework ]]; then
     signing_options+=(--entitlements "$workspace_dir/scripts/local-test.entitlements")
   fi
   # The file provider can race the first metadata clear. Retry only this known
   # generated-bundle metadata error; propagate every other signing failure.
-  signing_log="$(mktemp "$workspace_dir/build/signing.XXXXXX")"
+  signing_log="$(mktemp "$build_dir/signing.XXXXXX")"
   signed=false
   for signing_attempt in 1 2 3; do
     xattr -cr "$bundle_path"
@@ -53,14 +62,14 @@ while IFS= read -r -d '' bundle_path; do
   cat "$signing_log"
   rm -f "$signing_log"
   if [[ "$signed" != true ]]; then exit 1; fi
-done < <(find "$workspace_dir/build/Build/Products/$build_configuration" -depth \( -name '*.app' -o -name '*.xctest' \) -type d -print0)
-app_bundle="$workspace_dir/build/Build/Products/$build_configuration/Clevylo.app"
+done < <(find "$build_dir/Build/Products/$build_configuration" -depth \( -name '*.app' -o -name '*.xctest' -o -name '*.framework' \) -type d -print0)
+app_bundle="$build_dir/Build/Products/$build_configuration/Clevylo.app"
 xattr -cr "$app_bundle"
 codesign --verify --deep --strict "$app_bundle"
 if [[ "$build_configuration" == Release ]]; then
   # Preserve a clean deliverable even if the workspace's file provider later
   # attaches Finder metadata to the expanded .app again.
-  ditto -c -k --norsrc --noextattr --noqtn --keepParent "$app_bundle" "$workspace_dir/build/Clevylo.zip"
-  printf 'Archive: %s\n' "$workspace_dir/build/Clevylo.zip"
+  ditto -c -k --norsrc --noextattr --noqtn --keepParent "$app_bundle" "$build_dir/Clevylo.zip"
+  printf 'Archive: %s\n' "$build_dir/Clevylo.zip"
 fi
-printf 'Built: %s\n' "$workspace_dir/build/Build/Products/$build_configuration/Clevylo.app"
+printf 'Built: %s\n' "$build_dir/Build/Products/$build_configuration/Clevylo.app"

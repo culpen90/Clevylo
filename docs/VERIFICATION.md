@@ -77,6 +77,56 @@ On 2026-09-23, the installed app reproduced the reported Tutor layout failure: t
 
 `./scripts/build.sh` also passed and produced the universal Release app and ZIP. Manual checks in an isolated synthetic library verified the sidebar and composer in a roughly 908 × 632-point window and a zoomed window, a long saved response with a horizontally scrolling code block, and an attached source in the compact document tutor. No provider inference was used for these layout checks. The unit suite was not rerun for this view-only change.
 
+## In-app updates - 2026-09-23
+
+The updater uses pinned Sparkle 2.10.0, with signed appcasts and Ed25519 archive
+verification before extraction. Clevylo remains ad-hoc signed; no paid Apple
+developer account, Developer ID certificate, or notarization was used.
+
+- **68 unit tests passed**, including new tests that flush pending edits before
+  termination, cancel termination when saving fails, allow retry after recovery,
+  preserve read-only libraries, and inspect the built app's updater protections.
+- **40 release-tool tests passed**, including rejection of altered feeds and
+  archives, incorrect public keys, missing signatures, and wrong metadata/URLs.
+- All three native UI scenarios passed across the final runs: study/restart,
+  Tutor, and updater controls. The earlier combined run failed the new
+  test because XCTest exposes the switch state as a number, and the first UI run
+  also encountered a transient SecurityAgent interruption. The final focused
+  test uses native menu/toolbar selectors and handles the actual switch value;
+  it checks version, disabled automatic checks, enabled manual controls, and
+  absence of a startup error without starting a network request. The complete
+  three-test suite was not repeated after that test-only value-conversion fix.
+- Universal Release packaging for the local 1.1.0 (8) candidate passed extracted
+  app/helper signature checks, both architecture checks, entitlement and license
+  checks, native signed-feed generation, independent feed/archive verification,
+  and checksums. Both Keychain signing and the CI stdin-key path were exercised;
+  the latter used a throwaway key and temporary app copies. A wrong key failed
+  before producing publishable output.
+- An actual native update completed from an isolated **0.0.1 (1)** app to
+  **0.0.2 (2)** using the Release executable and packaged Sparkle framework. The
+  update window displayed the signed release notes, downloaded and verified the
+  archive, installed it, and relaunched the app at the same path. The new process
+  was running before the UI was reattached. Its bundle reported version 0.0.2,
+  strict code-signature verification passed, and the synthetic note was unchanged
+  on disk and visible after restart. A subsequent check showed “You’re up to date!”
+  The test app was quit and its loopback-only HTTP server stopped.
+
+The integration fixture used a unique bundle identifier, preferences domain,
+library, and temporary signing key. It did not replace the installed Clevylo app.
+Reproduce with [the native update smoke procedure](../scripts/tests/UPDATER-SMOKE.md).
+The production public key is embedded in the app; its private key is in the
+dedicated local Keychain account and the repository's Actions signing secret.
+
+Builds used `CLEVYLO_BUILD_DIR` outside the synced workspace to avoid Finder
+metadata invalidating nested signatures. Xcode strips framework headers during
+embedding, so packaging re-signs the outer Sparkle framework while retaining its
+helper signatures. This was verified in the real installation test.
+
+These checks establish the local updater and packaging behavior. They do not
+establish a published GitHub feed, hosted CI results for this change, Intel/macOS
+14 execution, or Gatekeeper behavior for a quarantined public download. Existing
+releases without the updater need one manual installation to gain this feature.
+
 ## External verification still required
 
 - Real Ollama generation, vision input, structured study generation, and cancellation require a running daemon and an installed compatible local model.
